@@ -33,7 +33,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * @author qilong.zql
@@ -43,6 +45,9 @@ import java.util.Map;
 public class SampleRestController {
 
     private static int cnt = 0;
+    //5秒
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private static final long FIVE_SECONDS = 5000;
 
     @SofaReference
     private NewsReadService  newReadService;
@@ -91,6 +96,11 @@ public class SampleRestController {
         student.setName("duoduo");
         Student res = studentDAO.save(student);
         return res;
+    }
+
+    @Scheduled(fixedRate = FIVE_SECONDS)
+    public void scheduledTask() {
+        System.out.println("scheduled Job The time is now "+dateFormat.format(new Date()));
     }
 
 }

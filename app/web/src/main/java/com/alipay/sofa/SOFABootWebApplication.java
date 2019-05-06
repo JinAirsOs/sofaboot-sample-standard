@@ -19,6 +19,7 @@ package com.alipay.sofa;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * SOFABootWebApplication
@@ -26,6 +27,7 @@ import org.springframework.boot.SpringApplication;
  * <p>
  * Created by yangguanchao on 16/12/9.
  */
+@EnableScheduling
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class SOFABootWebApplication {
 
