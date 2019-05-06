@@ -54,7 +54,12 @@ public class SampleRestController {
     private StudentDAO studentDAO;
 
     @RequestMapping("/json")
-    public List<Student> sampleController() {
+    public String sampleController() {
+        return "zhangsan";
+    }
+
+    @RequestMapping("/newReadService")
+    public List<Student> readService() {
         return newReadService.readAll();
     }
 
