@@ -17,16 +17,21 @@
 package com.alipay.sofa.controller;
 
 import com.alipay.sofa.common.dal.dao.NewsDO;
+import com.alipay.sofa.common.dal.dao.StudentDAO;
+import com.alipay.sofa.common.dal.tables.Student;
 import com.alipay.sofa.facade.NewsReadService;
 import com.alipay.sofa.facade.NewsWriteService;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +51,9 @@ public class SampleRestController {
 
     @SofaReference
     private NewsWriteService newWriteService;
+
+    @Autowired
+    private StudentDAO studentDAO;
 
     /**
      * Create a news table
@@ -119,6 +127,13 @@ public class SampleRestController {
     @RequestMapping("/json")
     public String sampleController() {
         return "zhangsan";
+    }
+
+    @RequestMapping("/queryAll")
+    public List<Student> queryStudent() {
+        List<Student> list = new ArrayList<Student>();
+        list = studentDAO.findAll();
+        return list;
     }
 
 }
