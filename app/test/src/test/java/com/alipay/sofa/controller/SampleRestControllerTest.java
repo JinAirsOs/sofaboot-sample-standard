@@ -82,6 +82,7 @@ public class SampleRestControllerTest {
     @Test
     public void update() {
         when(studentRepository.getOne(1)).thenReturn(student);
+        when(studentRepository.findById(1)).thenReturn(Optional.of(student));
         student.setName("duoduo");
         when(studentRepository.save(student)).thenReturn(student);
         Student user = studentController.update();
