@@ -1,3 +1,6 @@
+#
+sofa-boot官方项目sofaboot-samples/sofaboot-sample-standard文件夹下标准示例项目，不同的是，可以脱离sofa-boot
+独立运行。更改了pom依赖，使其脱离sofaboot文件夹。
 ## 快速入门
 本文档旨在演示如何在 SOFABoot 多模块中使用数据源，使用 h2database 内存数据库，执行了简单插入、查询、删除的数据库操作。项目的目录结构划分如下：
 ```text
