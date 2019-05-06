@@ -14,6 +14,8 @@
 
     <packaging>pom</packaging>
     <properties>
+        <project.version>1.0.0-SNAPSHOT</project.version>
+        <project.common.service.facade.version>1.0.0.20190506</project.common.service.facade.version>
     </properties>
 
     <modules>
@@ -35,7 +37,7 @@
             <dependency>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofaboot-sample-standard-common-service-facade</artifactId>
-                <version>${project.version}</version>
+                <version>${project.common.service.facade.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alipay.sofa</groupId>
@@ -58,22 +60,21 @@
                 <version>${project.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- spring framework and spring boot -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

@@ -9,6 +9,10 @@
         <relativePath>../../../../pom.xml</relativePath>
     </parent>
 
+    <version>${project.common.service.facade.version}</version>
+    <name>Alipay sofaboot-facade</name>
+    <url>http://home.alipay.net</url>
+    <description>Alipay sofaboot-facade</description>
     <artifactId>sofaboot-sample-standard-common-service-facade</artifactId>
     <packaging>jar</packaging>
 

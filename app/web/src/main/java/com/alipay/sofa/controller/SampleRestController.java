@@ -45,10 +45,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class SampleRestController {
 
     private static int cnt = 0;
-    //5秒
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    private static final long FIVE_SECONDS = 5000;
-
     @SofaReference
     private NewsReadService  newReadService;
 
@@ -75,9 +71,9 @@ public class SampleRestController {
         return list;
     }
 
-    @RequestMapping("/getOne")
-    public Student getStudent() {
-        Student student = studentDAO.findById(1).get();
+    @RequestMapping("/getOne/{id}")
+    public Student getStudent(@PathVariable("id") String id) {
+        Student student = studentDAO.findById(Integer.valueOf(id)).get();
         return student;
     }
 
@@ -96,11 +92,6 @@ public class SampleRestController {
         student.setName("duoduo");
         Student res = studentDAO.save(student);
         return res;
-    }
-
-    @Scheduled(fixedRate = FIVE_SECONDS)
-    public void scheduledTask() {
-        System.out.println("scheduled Job The time is now "+dateFormat.format(new Date()));
     }
 
 }

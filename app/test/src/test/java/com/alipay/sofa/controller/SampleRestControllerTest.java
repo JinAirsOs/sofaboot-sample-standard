@@ -30,6 +30,7 @@ public class SampleRestControllerTest {
 
     private Student student;
     private List<Student> studentList;
+    private String testId="1";
 
     @Before
     public void setUp() throws Exception {
@@ -47,7 +48,7 @@ public class SampleRestControllerTest {
     public void getStudent(){
         when(studentRepository.getOne(1)).thenReturn(student);
         when(studentRepository.findById(1)).thenReturn(Optional.of(student));
-        Student user = studentController.getStudent();
+        Student user = studentController.getStudent(testId);
         assertEquals(student,user);
     }
 
