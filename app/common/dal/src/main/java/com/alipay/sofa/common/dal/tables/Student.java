@@ -1,6 +1,7 @@
 package com.alipay.sofa.common.dal.tables;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "student")

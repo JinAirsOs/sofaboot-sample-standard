@@ -16,8 +16,8 @@
  */
 package com.alipay.sofa.service.impl;
 
-import com.alipay.sofa.common.dal.dai.NewsManageDao;
-import com.alipay.sofa.common.dal.dao.NewsDO;
+import com.alipay.sofa.common.dal.dao.StudentDAO;
+import com.alipay.sofa.common.dal.tables.Student;
 import com.alipay.sofa.facade.NewsWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,28 +30,18 @@ import java.sql.SQLException;
 public class NewsWriteServiceImpl implements NewsWriteService {
 
     @Autowired
-    private NewsManageDao newManageDao;
+    private StudentDAO studentDAO;
 
     @Override
-    public int addNews(String author, String title) throws SQLException {
+    public int addStudent(String name, int age) {
         try {
-            NewsDO newDO = new NewsDO();
-            newDO.setAuthor(author);
-            newDO.setTitle(title);
-            return newManageDao.insert(newDO);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            throw ex;
-        }
-    }
-
-    @Override
-    public void deleteNews(String author) throws SQLException {
-        try {
-            newManageDao.delete(author);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            throw ex;
+            Student student = new Student();
+            student.setName(name);
+            student.setAge(age);
+            student = studentDAO.save(student);
+            return student.getId();
+        } catch (Throwable ex) {
+            return 0;
         }
     }
 }

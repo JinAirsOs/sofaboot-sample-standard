@@ -25,17 +25,11 @@ import java.sql.SQLException;
 public interface NewsWriteService {
     /**
      * add a new
-     * @param author
-     * @param title
+     * @param name
+     * @param age
      * @return
      * @throws SQLException
      */
-    int addNews(String author, String title) throws SQLException;
+    int addStudent(String name, int age) throws SQLException;
 
-    /**
-     * delete a new
-     * @param author
-     * @throws SQLException
-     */
-    void deleteNews(String author) throws SQLException;
 }

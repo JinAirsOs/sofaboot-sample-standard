@@ -25,10 +25,8 @@ import java.util.List;
  */
 public interface NewsReadService<T> {
     /**
-     * read new
-     * @param author
+     * read all
      * @return
-     * @throws SQLException
      */
-    List<T> read(String author) throws SQLException;
+    List<T> readAll();
 }

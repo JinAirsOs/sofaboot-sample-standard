@@ -1,6 +1,6 @@
-#
+###
 sofa-boot官方项目sofaboot-samples/sofaboot-sample-standard文件夹下标准示例项目，不同的是，可以脱离sofa-boot
-独立运行。更改了pom依赖，使其脱离sofaboot文件夹。
+独立运行。更改了pom依赖，使其脱离sofaboot文件夹，更改了依赖数据库为mysql数据库。
 ## 快速入门
 本文档旨在演示如何在 SOFABoot 多模块中使用数据源，使用 h2database 内存数据库，执行了简单插入、查询、删除的数据库操作。项目的目录结构划分如下：
 ```text
@@ -22,12 +22,21 @@ app
 
 上图中未标注 `(模块)` 均为目录，各个模块的作用如下：
 - facade (模块)：定义了 `NewsReadService` 和 `NewsWriteService` 两个 JVM 服务接口
-- dal (模块)：定义了数据源，并发布了 `DataSource` 和 `INewsManageDao` JVM服务
-- service-impl (模块): 实现了 `NewsWriteService` 服务接口，并将 dal(模块) 设置为 Parent，通过 Spring 依赖注入的方式引用了 `INewsManageDao`
-- shared (模块): 实现了 `NewsReadService` 服务接口，使用 JVM 服务的方式引用了 `INewsManageDao`
+- dal (模块)：定义了数据源，数据库配置在web目录的application.properties里，已经设置自动建表
+- service-impl (模块): 实现了 `NewsWriteService` 服务接口，并将 dal(模块) 设置为 Parent，通过 Spring 依赖注入的方式引用了 `studentDAO`
+- shared (模块): 实现了 `NewsReadService` 服务接口，使用Spring bean方式引用了 `studentDAO`
 
 在这里不详述如何发布引用 JVM 服务，可以参见其他演示工程。这里演示如何运行该 Demo. 在该工程中暴露了4个 Rest 服务：
-- `localhost:8080/create`：在 h2database 创建一张新闻表，为了简单演示，新闻只包含作者和标题信息。需要注意一点，启动应用之后，首次需要访问这个服务。可以通过 `http://localhost:8080/h2-console` 查看 h2database 当前状态。(登入名：sofa, 密码：123456)
-- `localhost:8080/insert/{author}/{title}`: 插入新闻纪录，例如 `localhost:8080/insert/zhangsan/如何先挣一个亿`
-- `localhost:8080/delete/{author}`: 删除指定作者的所有新闻纪录，例如 `localhost:8080/delete/zhangsan`
-- `localhost:8080/query/{author}`: 查询指定作者的所有新闻纪录，例如 `localhost:8080/query/zhangsan`
+- `localhost:8080/getOne`：获取一个student
+- `localhost:8080/update`: 更新student
+- `localhost:8080/add`: 新增student
+- `localhost:8080/queryAll`: 查询所有student
+##安装步骤
+- java8
+- 运行mysql `docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6`
+- 登入容器新建test database `docker exec -it some-mysql /bin/bash`
+- `mysql -u root -p`
+输入123456
+- `>create database test;`
+
+然后IDEA运行,会自动在mysql,test db中新建student表，然后即可登陆localhost:8080/add新增student测试。

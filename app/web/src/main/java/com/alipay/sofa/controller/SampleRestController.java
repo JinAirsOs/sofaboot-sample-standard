@@ -16,16 +16,15 @@
  */
 package com.alipay.sofa.controller;
 
-import com.alipay.sofa.common.dal.dao.NewsDO;
 import com.alipay.sofa.common.dal.dao.StudentDAO;
 import com.alipay.sofa.common.dal.tables.Student;
+
 import com.alipay.sofa.facade.NewsReadService;
 import com.alipay.sofa.facade.NewsWriteService;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Example;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.sql.DataSource;
@@ -43,8 +42,7 @@ import java.util.Map;
 @RestController
 public class SampleRestController {
 
-    @SofaReference
-    private DataSource       dataSource;
+    private static int cnt = 0;
 
     @SofaReference
     private NewsReadService  newReadService;
@@ -55,85 +53,39 @@ public class SampleRestController {
     @Autowired
     private StudentDAO studentDAO;
 
-    /**
-     * Create a news table
-     * @return
-     */
-    @RequestMapping("/create")
-    public Map<String, Object> create() {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            Connection cn = dataSource.getConnection();
-            Statement st = cn.createStatement();
-            st.execute("DROP TABLE IF EXISTS NewsTable;"
-                       + "CREATE TABLE NewsTable(ID INT AUTO_INCREMENT, PRIMARY KEY (ID), AUTHOR VARCHAR(50),TITLE VARCHAR(255));");
-            resultMap.put("success", true);
-            resultMap
-                .put(
-                    "result",
-                    "CREATE TABLE NewsTable(ID INT AUTO_INCREMENT, PRIMARY KEY (ID), AUTHOR VARCHAR(50), TITLE VARCHAR(255))");
-        } catch (Throwable throwable) {
-            resultMap.put("success", false);
-            resultMap.put("error", throwable.getMessage());
-        }
-        return resultMap;
-    }
-
-    @RequestMapping("/insert/{author}/{title}")
-    public Map<String, Object> insert(@PathVariable("author") String author,
-                                      @PathVariable("title") String title) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            newWriteService.addNews(author, title);
-            resultMap.put("success", true);
-        } catch (Throwable throwable) {
-            resultMap.put("success", false);
-            resultMap.put("error", throwable.getMessage());
-        }
-        return resultMap;
-    }
-
-    @RequestMapping("/delete/{author}")
-    public Map<String, Object> delete(@PathVariable("author") String author) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            newWriteService.deleteNews(author);
-            resultMap.put("success", true);
-        } catch (Throwable throwable) {
-            resultMap.put("success", false);
-            resultMap.put("error", throwable.getMessage());
-        }
-        return resultMap;
-    }
-
-    @RequestMapping("/query/{author}")
-    public Map<String, Object> query(@PathVariable("author") String author) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            List<NewsDO> ret = newReadService.read(author);
-            resultMap.put("success", true);
-            resultMap.put("count", ret.size());
-            int i = 0;
-            for (NewsDO newDO : ret) {
-                resultMap.put(String.valueOf(++i), newDO.getAuthor() + "-" + newDO.getTitle());
-            }
-        } catch (Throwable throwable) {
-            resultMap.put("success", false);
-            resultMap.put("error", throwable.getMessage());
-        }
-        return resultMap;
-    }
-
     @RequestMapping("/json")
-    public String sampleController() {
-        return "zhangsan";
+    public List<Student> sampleController() {
+        return newReadService.readAll();
     }
 
     @RequestMapping("/queryAll")
-    public List<Student> queryStudent() {
+    public List<Student> queryAll() {
         List<Student> list = new ArrayList<Student>();
         list = studentDAO.findAll();
         return list;
+    }
+
+    @RequestMapping("/getOne")
+    public Student getStudent() {
+        Student student = studentDAO.findById(1).get();
+        return student;
+    }
+
+    @RequestMapping("add")
+    public Student add(){
+        Student user = new Student();
+        user.setName("junjun"+(cnt++));
+        user.setAge(6);
+        studentDAO.save(user);
+        return user;
+    }
+
+    @RequestMapping("update")
+    public Student update(){
+        Student student = studentDAO.findById(1).get();
+        student.setName("duoduo");
+        Student res = studentDAO.save(student);
+        return res;
     }
 
 }
