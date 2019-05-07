@@ -40,6 +40,6 @@ app
 - `>create database test;`
 
 然后IDEA运行,会自动在mysql,test db中新建student表，然后即可登陆localhost:8080/add新增student测试。
-记得运行zookeeper做服务注册中心
-$ docker image pull zookeeper:3.4.11
-$ docker run -i -t  --name my_zookeeper -p2181:2181 -d zookeeper:3.4.11
+-  记得运行zookeeper做服务注册中心
+- `$ docker image pull zookeeper:3.4.11`
+- `$ docker run -i -t  --name my_zookeeper -p2181:2181 -d zookeeper:3.4.11`
