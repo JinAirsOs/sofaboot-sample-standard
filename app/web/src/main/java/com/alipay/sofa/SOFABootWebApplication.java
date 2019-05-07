@@ -34,7 +34,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class SOFABootWebApplication {
 
-
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = SpringApplication.run(SOFABootWebApplication.class, args);
     }

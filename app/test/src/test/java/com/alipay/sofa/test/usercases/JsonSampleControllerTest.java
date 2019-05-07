@@ -16,6 +16,9 @@
  */
 package com.alipay.sofa.test.usercases;
 
+import com.alipay.sofa.SOFABootWebApplication;
+import com.alipay.sofa.facade.StudentRpcService;
+import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.test.base.AbstractTestBase;
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,5 +41,18 @@ public class JsonSampleControllerTest extends AbstractTestBase {
         String responseBody = responseEntity.getBody();
         LOGGER.info(responseBody);
         Assert.assertTrue(responseBody.contains("zhangsan"));
+    }
+
+    @Test
+    public void testStudentRpcService() {
+        ConsumerConfig<StudentRpcService> consumerConfig = new ConsumerConfig<StudentRpcService>()
+                .setInterfaceId(StudentRpcService.class.getName()) // 指定接口
+                .setProtocol("bolt") // 指定协议
+                .setDirectUrl("bolt://127.0.0.1:12200") // 指定直连地址
+                .setConnectTimeout(10 * 1000);
+
+        StudentRpcService studentRpcService = consumerConfig.refer();
+
+        Assert.assertTrue("hello student rpc service".equals(studentRpcService.sayName()));
     }
 }
