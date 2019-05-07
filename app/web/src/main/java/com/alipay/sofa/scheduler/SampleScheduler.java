@@ -13,14 +13,12 @@ import java.util.Date;
 @Component
 public class SampleScheduler {
     //5秒
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final long FIVE_SECONDS = 5000;
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleScheduler.class);
 
     @Scheduled(fixedRate = FIVE_SECONDS)
     public void scheduledTask() {
 
-        LOGGER.info("scheduled Job The time is now {}", dateFormat.format(new Date()));
         ConsumerConfig<StudentRpcService> consumerConfig = new ConsumerConfig<StudentRpcService>()
                 .setInterfaceId(StudentRpcService.class.getName()) // 指定接口
                 .setProtocol("bolt") // 指定协议
