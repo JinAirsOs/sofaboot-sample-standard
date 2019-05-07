@@ -2,7 +2,7 @@
 sofa-boot官方项目sofaboot-samples/sofaboot-sample-standard文件夹下标准示例项目，不同的是，可以脱离sofa-boot
 独立运行。更改了pom依赖，使其脱离sofaboot文件夹，更改了依赖数据库为mysql数据库。
 ## 快速入门
-本文档旨在演示如何在 SOFABoot 多模块中使用数据源，使用 h2database 内存数据库，执行了简单插入、查询、删除的数据库操作。项目的目录结构划分如下：
+本文档旨在演示如何在 SOFABoot 多模块中使用数据源，使用 mysql 内存数据库，执行了简单插入、查询、删除的数据库操作。项目的目录结构划分如下：
 ```text
 app
 │
@@ -43,3 +43,9 @@ app
 -  记得运行zookeeper做服务注册中心
 - `$ docker image pull zookeeper:3.4.11`
 - `$ docker run -i -t  --name my_zookeeper -p2181:2181 -d zookeeper:3.4.11`
+
+##新增功能
+- 服务注册zookeeper rpc注册中心,可以跨项目互相调用。
+- mysql数据库支持替换h2
+- login/getuserinfo的简单session例子。
+- 单点的cronjob例子。
