@@ -37,28 +37,5 @@ public class SOFABootWebApplication {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = SpringApplication.run(SOFABootWebApplication.class, args);
-
-        ConsumerConfig<StudentRpcService> consumerConfig = new ConsumerConfig<StudentRpcService>()
-                .setInterfaceId(StudentRpcService.class.getName()) // 指定接口
-                .setProtocol("bolt") // 指定协议
-                .setDirectUrl("bolt://127.0.0.1:12200") // 指定直连地址
-                .setConnectTimeout(10 * 1000);
-
-        StudentRpcService studentRpcService = consumerConfig.refer();
-
-        while (true) {
-            try {
-                System.out.println(studentRpcService.sayName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
     }
 }
