@@ -16,9 +16,12 @@
  */
 package com.alipay.sofa;
 
+import com.alipay.sofa.facade.StudentRpcService;
+import com.alipay.sofa.rpc.config.ConsumerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -31,10 +34,31 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class SOFABootWebApplication {
 
-    // init the logger
-    private static final Logger LOGGER = LoggerFactory.getLogger(SOFABootWebApplication.class);
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SOFABootWebApplication.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(SOFABootWebApplication.class, args);
+
+        ConsumerConfig<StudentRpcService> consumerConfig = new ConsumerConfig<StudentRpcService>()
+                .setInterfaceId(StudentRpcService.class.getName()) // 指定接口
+                .setProtocol("bolt") // 指定协议
+                .setDirectUrl("bolt://127.0.0.1:12200") // 指定直连地址
+                .setConnectTimeout(10 * 1000);
+
+        StudentRpcService studentRpcService = consumerConfig.refer();
+
+        while (true) {
+            try {
+                System.out.println(studentRpcService.sayName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

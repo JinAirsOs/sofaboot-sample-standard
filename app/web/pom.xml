@@ -46,6 +46,11 @@
             <artifactId>isle-sofa-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>rpc-sofa-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -22,6 +22,11 @@
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofaboot-sample-standard-common-dal</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>rpc-sofa-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
