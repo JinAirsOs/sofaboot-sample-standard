@@ -53,7 +53,7 @@ public class SOFABootWebApplication {
 
         StudentRpcService studentRpcService = consumerConfig.refer();*/
         //zookeeper注册中心获取bean。
-        /*StudentRpcService studentRpcService = (StudentRpcService) applicationContext.getBean("studentRpcService");
-        System.out.println(studentRpcService.sayName());*/
+        StudentRpcService studentRpcService = (StudentRpcService) applicationContext.getBean("studentRpcService");
+        System.out.println(studentRpcService.sayName());
     }
 }
