@@ -6,14 +6,4 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
-
-    <bean class="com.alipay.sofa.service.impl.NewsWriteServiceImpl" id="newWriteService"/>
-    <sofa:service ref="newWriteService" interface="com.alipay.sofa.facade.NewsWriteService">
-        <sofa:binding.jvm/>
-    </sofa:service>
-    <bean class="com.alipay.sofa.service.impl.StudentRpcServiceImpl" id="studentRpcService"/>
-    <sofa:service ref="studentRpcService" interface="com.alipay.sofa.facade.StudentRpcService">
-        <sofa:binding.bolt>
-        </sofa:binding.bolt>
-    </sofa:service>
 </beans>

@@ -3,6 +3,7 @@ package com.alipay.sofa.scheduler;
 import com.alipay.sofa.facade.StudentRpcService;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,13 +19,17 @@ public class SampleScheduler {
     //20秒
     private static final long TWENTY_SECONDS = 20000;
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleScheduler.class);
-
+    //sofareference的方式不用xml 引用，但是不直观。
+    //@SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt"))
+    //bean的方式引用虽然多了xml设置，但是便于理解，自己取舍。
     @Resource
     private StudentRpcService studentRpcService;
 
     @Scheduled(fixedRate = TWENTY_SECONDS)
     public void scheduledTask() {
-        //注意 studentRpcService已经被zookeeper注册成为bean
+        //注意 studentRpcService已经被zookeeper注册成为bean,xml如果不注册成为bean,
+        // 可以用上面的方式引用
         LOGGER.info(studentRpcService.sayName());
+        LOGGER.info(studentRpcService.getStudentNameById(1));
     }
 }

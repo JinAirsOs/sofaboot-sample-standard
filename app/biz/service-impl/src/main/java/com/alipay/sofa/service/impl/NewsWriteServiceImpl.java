@@ -19,14 +19,20 @@ package com.alipay.sofa.service.impl;
 import com.alipay.sofa.common.dal.dao.StudentDAO;
 import com.alipay.sofa.common.dal.tables.Student;
 import com.alipay.sofa.facade.NewsWriteService;
+import com.alipay.sofa.runtime.api.annotation.SofaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
 /**
- * @author qilong.zql
+ * @author kerry.pzd
  * @since 2.5.0
  */
+//用@Service注册bean
+//用@SofaService注册JVM服务。
+@Service
+@SofaService
 public class NewsWriteServiceImpl implements NewsWriteService {
 
     @Autowired
