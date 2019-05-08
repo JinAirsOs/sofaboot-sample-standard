@@ -14,7 +14,8 @@ import java.util.Optional;
 //用@Service注册bean
 //用@SofaService(bindings= {@SofaServiceBinding(bindingType = "bolt")})注册rpc服务
 //也可以在xml中设置，便于理解。
-
+@Service
+@SofaService(bindings= {@SofaServiceBinding(bindingType = "bolt"),@SofaServiceBinding(bindingType = "rest")})
 public class StudentRpcServiceImpl implements StudentRpcService {
 
     @Resource
@@ -29,7 +30,7 @@ public class StudentRpcServiceImpl implements StudentRpcService {
         if(studentOption.isPresent()){
             return studentOption.get().getName();
         } else {
-            return "";
+            return "notfound";
         }
     }
 }

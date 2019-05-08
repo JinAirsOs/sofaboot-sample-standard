@@ -6,10 +6,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("studentRestService")
-@Produces(APPLICATION_JSON)
+@Consumes("application/json;charset=UTF-8")
+@Produces("application/json;charset=UTF-8")
 public interface StudentRpcService {
     @GET
     @Path("sayName")

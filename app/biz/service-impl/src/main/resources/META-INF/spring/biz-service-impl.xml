@@ -6,10 +6,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
-    <bean id="studentRpcService" class="com.alipay.sofa.service.impl.StudentRpcServiceImpl">
+    <!--<bean id="studentRpcService" class="com.alipay.sofa.service.impl.StudentRpcServiceImpl">
     </bean>
     <sofa:service ref="studentRpcService" interface="com.alipay.sofa.facade.StudentRpcService">
         <sofa:binding.bolt/>
         <sofa:binding.rest/>
-    </sofa:service>
+    </sofa:service>-->
 </beans>
