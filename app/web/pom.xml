@@ -51,6 +51,12 @@
             <artifactId>rpc-sofa-boot-starter</artifactId>
         </dependency>
 
+        <!--health check-->
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>healthcheck-sofa-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -49,3 +49,5 @@ app
 - mysql数据库支持替换h2
 - login/getuserinfo的简单session例子。
 - 单点的cronjob例子。
+- 健康检查模块 详见`http://localhost:8080/actuator/health`
+- 
