@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.swing.text.html.Option;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.Map;
 
 //用@Service注册bean
 //用@SofaService(bindings= {@SofaServiceBinding(bindingType = "bolt")})注册rpc服务
@@ -31,6 +33,17 @@ public class StudentRpcServiceImpl implements StudentRpcService {
             return studentOption.get().getName();
         } else {
             return "notfound";
+        }
+    }
+
+    public Map<String,Student> getStudentInfoById(int id) {
+        Optional<Student> studentOption = studentDAO.findById(id);
+        Map<String,Student> studentInfo = new HashMap<>();
+        if(studentOption.isPresent()){
+            studentInfo.put("student",studentOption.get());
+            return studentInfo;
+        } else {
+            return studentInfo;
         }
     }
 }
