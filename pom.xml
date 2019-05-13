@@ -92,6 +92,32 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>nexus-snapshots</id>
+                    <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>nexus-snapshots</id>
+                    <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
     <distributionManagement>
         <snapshotRepository>
             <id>nexus-snapshots</id>
