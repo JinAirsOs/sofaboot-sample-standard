@@ -16,9 +16,9 @@
     <properties>
         <!-- sbs short for sofa boot start-->
         <sbs.project.version>1.0.0-SNAPSHOT</sbs.project.version>
-        <project.common.service.facade.version>1.0.0.20190506</project.common.service.facade.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <jdk.verson>1.8</jdk.verson>
+        <maven.compiler.source>${jdk.verson}</maven.compiler.source>
+        <maven.compiler.target>${jdk.verson}</maven.compiler.target>
     </properties>
 
     <modules>
