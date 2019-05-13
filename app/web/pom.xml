@@ -8,26 +8,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sofaboot-sample-standard-web</artifactId>
+    <artifactId>sofaboot-start-web</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <!-- service dependency -->
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-biz-service-impl</artifactId>
+            <artifactId>sofaboot-start-biz-service-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-biz-shared</artifactId>
+            <artifactId>sofaboot-start-biz-shared</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-common-dal</artifactId>
+            <artifactId>sofaboot-start-common-dal</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-common-service-facade</artifactId>
+            <artifactId>sofaboot-start-common-service-facade</artifactId>
         </dependency>
 
         <!-- spring web dependency -->

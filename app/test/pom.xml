@@ -8,13 +8,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sofaboot-sample-standard-test</artifactId>
+    <artifactId>sofaboot-start-test</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-web</artifactId>
+            <artifactId>sofaboot-start-web</artifactId>
         </dependency>
 
         <!-- test -->

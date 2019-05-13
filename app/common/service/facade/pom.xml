@@ -9,7 +9,7 @@
         <relativePath>../../../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>sofaboot-sample-standard-common-service-facade</artifactId>
+    <artifactId>sofaboot-start-common-service-facade</artifactId>
     <name>Alipay sofaboot-facade</name>
     <url>http://home.alipay.net</url>
     <description>Alipay sofaboot-facade</description>
@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-sample-standard-common-dal</artifactId>
+            <artifactId>sofaboot-start-common-dal</artifactId>
         </dependency>
     </dependencies>
 
