@@ -32,6 +32,7 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
             user = userOptional.get();
             String passwdHash = user.getPassword();
 
+            return data;
         } else {
             data.put("success","false");
             data.put("reason", "user password not match");
