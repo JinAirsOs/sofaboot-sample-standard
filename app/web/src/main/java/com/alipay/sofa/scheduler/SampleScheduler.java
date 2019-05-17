@@ -1,5 +1,6 @@
 package com.alipay.sofa.scheduler;
 
+import com.alipay.sofa.config.AppConfig;
 import com.alipay.sofa.facade.StudentRpcService;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
@@ -25,11 +26,14 @@ public class SampleScheduler {
     @Resource
     private StudentRpcService studentRpcService;
 
+    @Resource
+    private AppConfig appConfig;
     @Scheduled(fixedRate = TWENTY_SECONDS)
     public void scheduledTask() {
         //注意 studentRpcService已经被zookeeper注册成为bean,xml如果不注册成为bean,
         // 可以用上面的方式引用
-        LOGGER.info(studentRpcService.sayName());
+        LOGGER.info(studentRpcService.ping());
         LOGGER.info(studentRpcService.getStudentNameById(1));
+        LOGGER.info(appConfig.getSecret());
     }
 }

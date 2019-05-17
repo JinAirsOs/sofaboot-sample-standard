@@ -23,8 +23,8 @@ public class StudentRpcServiceImpl implements StudentRpcService {
     @Resource
     private StudentDAO studentDAO;
 
-    public String sayName(){
-        return "hello student rpc service";
+    public String ping(){
+        return "pong";
     }
 
     public String getStudentNameById(int id){

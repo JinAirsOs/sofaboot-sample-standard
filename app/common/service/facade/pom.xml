@@ -26,6 +26,10 @@
             <artifactId>sofaboot-start-common-dal</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofaboot-start-common-util</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope>

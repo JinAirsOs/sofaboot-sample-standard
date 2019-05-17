@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import com.alipay.sofa.common.util.Result;
 
 /**
  * @author kerry
@@ -20,5 +21,5 @@ public interface UserAuthorizationService {
 
     @POST
     @Path("login")
-    Map<String,String> login(HttpServletRequest request);
+    Result login();
 }

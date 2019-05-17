@@ -18,12 +18,16 @@ package com.alipay.sofa.test.usercases;
 
 import com.alipay.sofa.SOFABootWebApplication;
 import com.alipay.sofa.facade.StudentRpcService;
+import com.alipay.sofa.facade.UserAuthorizationService;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.test.base.AbstractTestBase;
+import org.jboss.resteasy.util.HttpServletRequestDelegate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 集成测试
@@ -44,7 +48,7 @@ public class JsonSampleControllerTest extends AbstractTestBase {
     }
 
     @Test
-    public void testStudentRpcService() {
+    public void testStudentRpcBoltService() {
         ConsumerConfig<StudentRpcService> consumerConfig = new ConsumerConfig<StudentRpcService>()
                 .setInterfaceId(StudentRpcService.class.getName()) // 指定接口
                 .setProtocol("bolt") // 指定协议
@@ -53,6 +57,20 @@ public class JsonSampleControllerTest extends AbstractTestBase {
 
         StudentRpcService studentRpcService = consumerConfig.refer();
 
-        Assert.assertTrue("hello student rpc service".equals(studentRpcService.sayName()));
+        Assert.assertTrue("pong".equals(studentRpcService.ping()));
+    }
+
+    @Test
+    public void testUserRpcBoltService() {
+        ConsumerConfig<UserAuthorizationService> consumerConfig = new ConsumerConfig<UserAuthorizationService>()
+                .setInterfaceId(UserAuthorizationService.class.getName()) // 指定接口
+                .setProtocol("bolt") // 指定协议
+                .setDirectUrl("bolt://127.0.0.1:12200") // 指定直连地址
+                .setConnectTimeout(10 * 1000);
+
+        UserAuthorizationService userAuthorizationService = consumerConfig.refer();
+
+
+        //Assert.assertTrue("hello student rpc service".equals(userAuthorizationService.login(request)));
     }
 }

@@ -14,8 +14,8 @@ import com.alipay.sofa.common.dal.tables.Student;
 @Produces("application/json;charset=UTF-8")
 public interface StudentRpcService {
     @GET
-    @Path("sayName")
-    String sayName();
+    @Path("ping")
+    String ping();
 
     @GET
     @Path("getStudentNameById")

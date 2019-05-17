@@ -25,6 +25,7 @@
         <module>app/biz/service-impl</module>
         <module>app/common/service/facade</module>
         <module>app/common/dal</module>
+        <module>app/common/util</module>
         <module>app/test</module>
         <module>app/web</module>
         <module>app/biz/shared</module>
@@ -50,6 +51,11 @@
             <dependency>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofaboot-start-common-dal</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofaboot-start-common-util</artifactId>
                 <version>${sbs.project.version}</version>
             </dependency>
             <dependency>

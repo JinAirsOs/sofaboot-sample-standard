@@ -8,35 +8,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sofaboot-start-biz-service-impl</artifactId>
+    <artifactId>sofaboot-start-common-util</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- facade dependency -->
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-start-common-service-facade</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofaboot-start-common-dal</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-start-common-util</artifactId>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
-
         <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>rpc-sofa-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.4.0</version>
         </dependency>
     </dependencies>
 

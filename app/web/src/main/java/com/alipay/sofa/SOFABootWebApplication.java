@@ -17,6 +17,7 @@
 package com.alipay.sofa;
 
 import com.alipay.sofa.common.dal.tables.Student;
+import com.alipay.sofa.config.AppConfig;
 import com.alipay.sofa.facade.StudentRpcService;
 import com.alipay.sofa.rpc.common.RpcConstants;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
@@ -57,7 +58,9 @@ public class SOFABootWebApplication {
         StudentRpcService studentRpcService = consumerConfig.refer();*/
         //zookeeper注册中心获取bean。
         StudentRpcService studentRpcService = (StudentRpcService) applicationContext.getBean("studentRpcService");
-        System.out.println(studentRpcService.sayName());
+        System.out.println(studentRpcService.ping());
         System.out.println(studentRpcService.getStudentInfoById(1));
+        AppConfig appConfig = (AppConfig) applicationContext.getBean("appConfig");
+        System.out.println(appConfig.getProperty("spring.application.secret"));
     }
 }
