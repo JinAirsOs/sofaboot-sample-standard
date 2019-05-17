@@ -1,8 +1,8 @@
 package com.alipay.sofa.common.util;
 
-public class Result<T> extends CommonResult {
+public class Result<DATA> extends CommonResult {
     private static final long serialVersionUID = 579178995823150578L;
-    private T data;
+    private DATA data;
 
     public Result() {
     }
@@ -47,11 +47,11 @@ public class Result<T> extends CommonResult {
         return result;
     }
 
-    public T getData() {
+    public DATA getData() {
         return this.data;
     }
 
-    public void setData(T data) {
+    public void setData(DATA data) {
         this.data = data;
     }
 }
