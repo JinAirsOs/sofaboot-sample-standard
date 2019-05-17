@@ -14,7 +14,7 @@ public abstract class CommonResult implements Serializable {
         return this.errorContext;
     }
 
-    public int getTopErrorCode() {
+    public Integer getTopErrorCode() {
         return this.errorContext != null && this.errorContext.getErrorCode() != null ? this.errorContext.getErrorCode(): null;
     }
 
