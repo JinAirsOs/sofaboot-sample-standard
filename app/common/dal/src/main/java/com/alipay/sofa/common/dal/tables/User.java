@@ -44,7 +44,7 @@ public class User {
 
     //var(50)
     @Column(name = "avatar",nullable = false,length = 50)
-    private String avatar;
+    private String avatar="";
 
     //oauth user don't have password
     @Column(name = "password",nullable = false,length = 50)

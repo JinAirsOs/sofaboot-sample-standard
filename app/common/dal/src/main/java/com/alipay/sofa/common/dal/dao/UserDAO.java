@@ -5,6 +5,9 @@ import com.alipay.sofa.common.dal.tables.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDAO extends JpaRepository<User,Integer> {
+
+    Optional<List<User>> findByName(String name);
 }
