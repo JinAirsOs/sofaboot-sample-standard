@@ -7,7 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.servlet.http.HttpServletRequest;
-import cn.com.antcloud.common.result.Result;
+import java.util.Map;
 
 /**
  * @author kerry
@@ -20,5 +20,5 @@ public interface UserAuthorizationService {
 
     @POST
     @Path("login")
-    Result<String> login(HttpServletRequest request);
+    Map<String,String> login(HttpServletRequest request);
 }

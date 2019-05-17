@@ -27,6 +27,15 @@
             <artifactId>rpc-sofa-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofaboot-start-web</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
