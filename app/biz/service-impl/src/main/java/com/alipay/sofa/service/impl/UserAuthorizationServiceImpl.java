@@ -5,10 +5,8 @@ import com.alipay.sofa.common.dal.tables.User;
 import com.alipay.sofa.facade.UserAuthorizationService;
 import com.alipay.sofa.runtime.api.annotation.SofaService;
 import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
-import org.jboss.resteasy.util.HttpServletRequestDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.core.env.Environment;
 import com.alipay.sofa.common.util.AES;
@@ -44,8 +42,6 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
 
     public Result login(LoginRequest loginRequest){
         Map<String,String> data = new HashMap<>();
-        /*String name = request.getParameter("name");
-        String password = request.getParameter("password");*/
         String name = loginRequest.getName();
         String password = loginRequest.getPassword();
         User user = new User();
@@ -95,11 +91,16 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
         user.setEmail(registerUserRequest.getEmail());
         user.setPhone(registerUserRequest.getPhone());
 
-        User user1 = userDAO.save(user);
-        if(user1.getId() > 0) {
-            return Result.success("success");
-        } else {
-            return Result.failed("db error");
+        try {
+            User user1 = userDAO.save(user);
+            if(user1.getId() > 0) {
+                return Result.success("success");
+            } else {
+                return Result.failed("db error");
+            }
+        }catch (Exception e) {
+            logger.info(e.toString());
+            return Result.failed(e);
         }
     }
 }
