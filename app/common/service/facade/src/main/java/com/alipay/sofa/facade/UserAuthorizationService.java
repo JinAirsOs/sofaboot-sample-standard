@@ -2,11 +2,9 @@ package com.alipay.sofa.facade;
 
 
 import javax.ws.rs.*;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 import com.alipay.sofa.common.util.Result;
-import com.alipay.sofa.facade.model.user.LoginRequest;
-import com.alipay.sofa.facade.model.user.RegisterUserRequest;
+import com.alipay.sofa.facade.model.request.LoginRequest;
+import com.alipay.sofa.facade.model.request.RegisterUserRequest;
 
 /**
  * @author kerry

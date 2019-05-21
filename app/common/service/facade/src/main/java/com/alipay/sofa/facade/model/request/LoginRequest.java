@@ -1,4 +1,4 @@
-package com.alipay.sofa.facade.model.user;
+package com.alipay.sofa.facade.model.request;
 
 import java.io.Serializable;
 

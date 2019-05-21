@@ -14,29 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.test.usercases;
+package com.alipay.sofa.test.integration;
 
-import com.alipay.sofa.SOFABootWebApplication;
 import com.alipay.sofa.facade.StudentRpcService;
 import com.alipay.sofa.facade.UserAuthorizationService;
-import com.alipay.sofa.facade.model.user.LoginRequest;
+import com.alipay.sofa.facade.model.request.LoginRequest;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.test.base.AbstractTestBase;
-import org.jboss.resteasy.util.HttpServletRequestDelegate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.alipay.sofa.common.util.Result;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * 集成测试
- * JsonSampleControllerTest
- * @author ruoshan
+ * Integration test
+ * @author kerry.pzd
  */
-public class JsonSampleControllerTest extends AbstractTestBase {
+public class IntegrationTest extends AbstractTestBase {
 
     @Test
     public void testRequestJson() {
@@ -46,7 +42,7 @@ public class JsonSampleControllerTest extends AbstractTestBase {
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         String responseBody = responseEntity.getBody();
         LOGGER.info(responseBody);
-        Assert.assertTrue(responseBody.contains("zhangsan"));
+        Assert.assertTrue(responseBody.contains("pong"));
     }
 
     @Test
@@ -77,7 +73,7 @@ public class JsonSampleControllerTest extends AbstractTestBase {
         loginRequest.setPassword("test");
         Result result = userAuthorizationService.login(loginRequest);
         Assert.assertTrue(!result.isSuccess());
-        Assert.assertTrue(result.getErrorContext() != null);
+        Assert.assertNotNull(result.getErrorContext());
     }
 
     @Test
@@ -88,8 +84,8 @@ public class JsonSampleControllerTest extends AbstractTestBase {
         ResponseEntity<Result> responseEntity = testRestTemplate.postForEntity(restHttpPrefix+"/api/v1/login",loginRequest,Result.class);
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Result result = responseEntity.getBody();
-        LOGGER.info(result.toString());
+
         Assert.assertTrue(!result.isSuccess());
-        Assert.assertTrue(result.getErrorContext()!=null);
+        Assert.assertNotNull(result.getErrorContext());
     }
 }

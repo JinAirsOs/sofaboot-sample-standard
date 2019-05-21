@@ -50,4 +50,4 @@ app
 - login/getuserinfo的简单session例子。
 - 单点的cronjob例子。
 - 健康检查模块 详见`http://localhost:8080/actuator/health`
-- 
+- sofa，rest api 基于jwt验证模块的实现。详见`http://localhost:8341/api/v1/login`

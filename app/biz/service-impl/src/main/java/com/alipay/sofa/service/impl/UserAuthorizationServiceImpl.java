@@ -15,8 +15,8 @@ import com.alipay.sofa.common.util.Result;
 import javax.annotation.Resource;
 
 import com.alipay.sofa.common.util.JWT;
-import com.alipay.sofa.facade.model.user.RegisterUserRequest;
-import com.alipay.sofa.facade.model.user.LoginRequest;
+import com.alipay.sofa.facade.model.request.RegisterUserRequest;
+import com.alipay.sofa.facade.model.request.LoginRequest;
 
 import java.util.HashMap;
 import java.util.Map;

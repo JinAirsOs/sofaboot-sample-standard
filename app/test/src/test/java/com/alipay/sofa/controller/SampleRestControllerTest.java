@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * 单元测试
+ * unit test
  * @Author kerry.pzd
  */
 public class SampleRestControllerTest {

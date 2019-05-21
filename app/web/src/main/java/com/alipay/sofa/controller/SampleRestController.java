@@ -55,7 +55,7 @@ public class SampleRestController {
 
     @RequestMapping("/json")
     public String sampleController() {
-        return "zhangsan";
+        return "pong";
     }
 
     @RequestMapping("/newReadService")
