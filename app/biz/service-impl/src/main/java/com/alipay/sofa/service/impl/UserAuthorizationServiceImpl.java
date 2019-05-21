@@ -13,7 +13,7 @@ import com.alipay.sofa.common.util.AES;
 import com.alipay.sofa.common.util.Result;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+
 import com.alipay.sofa.common.util.JWT;
 import com.alipay.sofa.facade.model.user.RegisterUserRequest;
 import com.alipay.sofa.facade.model.user.LoginRequest;
@@ -23,6 +23,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Date;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 
 @Service
@@ -101,6 +104,16 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
         }catch (Exception e) {
             logger.info(e.toString());
             return Result.failed(e);
+        }
+    }
+
+    public Result getUser(String id) {
+        Long userId = Long.parseLong(id);
+        Optional<User> userOptional = userDAO.findById(userId);
+        if(userOptional.isPresent()){
+            return Result.success(userOptional.get());
+        }else {
+            return Result.failed("user not found");
         }
     }
 }

@@ -1,11 +1,7 @@
 package com.alipay.sofa.facade;
 
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import com.alipay.sofa.common.util.Result;
@@ -28,4 +24,8 @@ public interface UserAuthorizationService {
     @POST
     @Path("register")
     Result register(RegisterUserRequest registerUserRequest);
+
+    @GET
+    @Path("user/{id}")
+    Result getUser(@PathParam("id") String id);
 }

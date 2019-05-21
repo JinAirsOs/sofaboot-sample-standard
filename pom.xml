@@ -19,6 +19,9 @@
         <jdk.verson>1.8</jdk.verson>
         <maven.compiler.source>${jdk.verson}</maven.compiler.source>
         <maven.compiler.target>${jdk.verson}</maven.compiler.target>
+        <google.guava.version>17.0</google.guava.version>
+        <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
+        <mockito.version>1.10.19</mockito.version>
     </properties>
 
     <modules>
@@ -90,6 +93,44 @@
                 <groupId>javax.ws.rs</groupId>
                 <artifactId>javax.ws.rs-api</artifactId>
                 <version>2.0</version>
+            </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-jaxrs</artifactId>
+                <version>${codehaus.jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>3.4.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>2.7.8</version>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

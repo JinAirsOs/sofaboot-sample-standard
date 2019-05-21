@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 /**
@@ -64,7 +63,7 @@ public class SampleRestControllerTest {
 
     @Test
     public void add() {
-        when(studentRepository.save(any(Student.class))).thenReturn(student);
+        when(studentRepository.save(student)).thenReturn(student);
         Student student1 = studentController.add();
         assertNotEquals(student,student1);
         Student user = new Student();

@@ -19,6 +19,7 @@ package com.alipay.sofa.test.usercases;
 import com.alipay.sofa.SOFABootWebApplication;
 import com.alipay.sofa.facade.StudentRpcService;
 import com.alipay.sofa.facade.UserAuthorizationService;
+import com.alipay.sofa.facade.model.user.LoginRequest;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.test.base.AbstractTestBase;
 import org.jboss.resteasy.util.HttpServletRequestDelegate;
@@ -26,6 +27,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.alipay.sofa.common.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -61,7 +63,7 @@ public class JsonSampleControllerTest extends AbstractTestBase {
     }
 
     @Test
-    public void testUserRpcBoltService() {
+    public void testUserRpcBoltServiceLogin() {
         ConsumerConfig<UserAuthorizationService> consumerConfig = new ConsumerConfig<UserAuthorizationService>()
                 .setInterfaceId(UserAuthorizationService.class.getName()) // 指定接口
                 .setProtocol("bolt") // 指定协议
@@ -70,7 +72,24 @@ public class JsonSampleControllerTest extends AbstractTestBase {
 
         UserAuthorizationService userAuthorizationService = consumerConfig.refer();
 
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setName("notfound");
+        loginRequest.setPassword("test");
+        Result result = userAuthorizationService.login(loginRequest);
+        Assert.assertTrue(!result.isSuccess());
+        Assert.assertTrue(result.getErrorContext() != null);
+    }
 
-        //Assert.assertTrue("hello student rpc service".equals(userAuthorizationService.login(request)));
+    @Test
+    public void testUserRpcRestServiceLogin() {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setName("notfound");
+        loginRequest.setPassword("test");
+        ResponseEntity<Result> responseEntity = testRestTemplate.postForEntity(restHttpPrefix+"/api/v1/login",loginRequest,Result.class);
+        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Result result = responseEntity.getBody();
+        LOGGER.info(result.toString());
+        Assert.assertTrue(!result.isSuccess());
+        Assert.assertTrue(result.getErrorContext()!=null);
     }
 }

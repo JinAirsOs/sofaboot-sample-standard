@@ -45,14 +45,22 @@ public abstract class AbstractTestBase {
 
     protected String           urlHttpPrefix;
 
+    protected String           restHttpPrefix;
+
     /**
      * 8080
      */
     @LocalServerPort
     public int                 definedPort;
 
+    /**
+     * 8341
+     * default sofa rest api port
+     */
+    public int                  restPort=8341;
     @Before
     public void setUp() {
         urlHttpPrefix = "http://localhost:" + definedPort;
+        restHttpPrefix = "http://localhost:" + restPort;
     }
 }

@@ -2,6 +2,7 @@ package com.alipay.sofa.common.dal.tables;
 
 import javax.persistence.*;
 import java.util.*;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(
@@ -26,11 +27,13 @@ public class User {
 
     //var(50)
     //oauth service eg.gmail,facebook,github
+    @JsonIgnore
     @Column(name = "auth_service",length = 50)
     private String authService;
 
     //var(50)
     //oauth id
+    @JsonIgnore
     @Column(name = "auth_id",length = 50)
     private String authId;
 
@@ -43,10 +46,11 @@ public class User {
     private Boolean isAdmin=false;
 
     //var(50)
-    @Column(name = "avatar",nullable = false,length = 50)
-    private String avatar="";
+    @Column(name = "avatar",nullable = true,length = 50)
+    private String avatar;
 
     //oauth user don't have password
+    @JsonIgnore
     @Column(name = "password",nullable = false,length = 50)
     private String password="";
 
