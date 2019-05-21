@@ -53,7 +53,7 @@ public class JWT {
                 //iat: jwt的签发时间
                 .setIssuedAt(now)
                 //代表这个JWT的主体，即它的所有人，这个是一个json格式的字符串，可以存放什么userid，roldid之类的，作为什么用户的唯一标志。
-                .setSubject(subject)
+                .setSubject(user.getId().toString())
                 //设置签名使用的签名算法和签名使用的秘钥
                 .signWith(signatureAlgorithm, key);
         if (ttlMillis >= 0) {

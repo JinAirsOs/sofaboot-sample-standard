@@ -2,9 +2,11 @@ package com.alipay.sofa.service.impl;
 
 import com.alipay.sofa.common.dal.dao.UserDAO;
 import com.alipay.sofa.common.dal.tables.User;
+import com.alipay.sofa.common.util.annotation.JWTAuth;
 import com.alipay.sofa.facade.UserAuthorizationService;
 import com.alipay.sofa.runtime.api.annotation.SofaService;
 import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
+import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import com.alipay.sofa.common.util.AES;
 import com.alipay.sofa.common.util.Result;
 
 import javax.annotation.Resource;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
 
 import com.alipay.sofa.common.util.JWT;
 import com.alipay.sofa.facade.model.request.RegisterUserRequest;
@@ -58,7 +63,7 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
             String verify = AES.decrypt(passwdHash,secret);
             if (password.equals(verify)){
                 //15分钟
-                String jwt = JWT.createJWT(15*60*1000,secret,user);
+                String jwt = JWT.createJWT(15*60*1000,secret,userList.get(0));
                 data.put("authorization",jwt);
                 return Result.success(data);
             } else {
@@ -110,10 +115,42 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
     public Result getUser(String id) {
         Long userId = Long.parseLong(id);
         Optional<User> userOptional = userDAO.findById(userId);
+        logger.info("api/v1/getuser {}",id);
         if(userOptional.isPresent()){
             return Result.success(userOptional.get());
         }else {
             return Result.failed("user not found");
+        }
+    }
+
+    public Result echoWithJWTToken(HttpHeaders httpHeaders) {
+
+        String authorizationHeader = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
+        logger.info(authorizationHeader);
+        try {
+            // Extract the token from the HTTP Authorization header
+            String token = authorizationHeader.substring("Bearer".length()).trim();
+
+            secret = environment.getProperty("spring.application.secret");
+
+            Claims claims = JWT.parseJWT(token,secret);
+            logger.info("valid token : " + token);
+            Date now = new Date();
+            /*if(claims.getExpiration().after(now)) {
+                throw new Exception("token expired");
+            }*/
+            String userId = claims.getSubject();
+            logger.info(userId);
+            Long id = Long.parseLong(userId);
+            Optional userOptional = userDAO.findById(id);
+            if(!userOptional.isPresent()){
+                //no such user
+                throw new Exception("token invalid");
+            }
+            return Result.success(userId);
+
+        } catch (Exception e) {
+            return Result.failed(e);
         }
     }
 }
