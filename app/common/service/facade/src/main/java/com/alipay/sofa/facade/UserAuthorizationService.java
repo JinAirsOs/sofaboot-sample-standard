@@ -11,6 +11,8 @@ import com.alipay.sofa.common.util.annotation.JWTAuth;
 import com.alipay.sofa.facade.model.request.LoginRequest;
 import com.alipay.sofa.facade.model.request.RegisterUserRequest;
 
+import java.lang.annotation.Inherited;
+
 /**
  * @author kerry
  * @date 2019-5-17 11:01:23
@@ -32,6 +34,11 @@ public interface UserAuthorizationService {
     @Path("user/{id}")
     @JWTAuth
     Result getUser(@PathParam("id") String id);
+
+    @GET
+    @Path("me")
+    @JWTAuth
+    Result me(@Context HttpHeaders httpHeaders);
 
     @GET
     @Path("jwt")

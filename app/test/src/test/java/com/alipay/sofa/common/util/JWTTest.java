@@ -24,6 +24,7 @@ public class JWTTest {
     private String name = "test";
     private String secret = "testsecret";
     private User user;
+    private String jwtString;
 
     @Before
     public void setUp() throws Exception {
@@ -36,8 +37,7 @@ public class JWTTest {
     @Test
     public void createJWT() {
 
-        String jwtString = JWT.createJWT(15*60*1000,secret,user);
-        System.out.println(jwtString);
+        jwtString = JWT.createJWT(15*60*1000,secret,user);
         Claims claims = JWT.parseJWT(jwtString,secret);
         assertEquals(user.getId().toString(),claims.getSubject());
         Date now = new Date();
@@ -48,12 +48,18 @@ public class JWTTest {
 
     @Test
     public void parseJWT() {
-        String jwtString = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6InRlc3QiLCJleHAiOjE1NTg0OTYyMzgsImlhdCI6MTU1ODQ5NTMzOCwianRpIjoiZjZkYjg0YmEtZWM2Yy00ZjVhLWIwZDMtZjUxZTY0ZGUzMjMyIn0.xNnNWnsNBUVr8V9dh6XiomoSCB9ey-NcbegmAQivmfs";
+        String jwtString = JWT.createJWT(15*60*1000,secret,user);
 
         Claims claims = JWT.parseJWT(jwtString,secret);
         assertEquals(user.getId().toString(),claims.getSubject());
         Date now = new Date();
-        assertTrue(now.after(claims.getExpiration()));
+        assertTrue(now.before(claims.getExpiration()));
         assertTrue(user.getName().equals(claims.get("name")));
+    }
+
+    @Test
+    public void isVerify(){
+        String jwtString = JWT.createJWT(15*60*1000,secret,user);
+        assertTrue(JWT.isVerify(jwtString,secret,user));
     }
 }

@@ -97,7 +97,7 @@ public class JWT {
                 //设置需要解析的jwt
                 .parseClaimsJws(token).getBody();
 
-        if (claims.get("id").equals(user.getId())) {
+        if (claims.get("name").equals(user.getName()) && claims.getSubject().equals(user.getId().toString())) {
             return true;
         }
 

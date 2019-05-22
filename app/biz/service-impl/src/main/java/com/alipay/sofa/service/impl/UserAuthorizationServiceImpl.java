@@ -84,12 +84,11 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
 
     public Result register(RegisterUserRequest registerUserRequest){
         try{
-            checkNotNull(registerUserRequest);
+            checkNotNull(registerUserRequest,"empty request");
             checkState(isNotBlank(registerUserRequest.getName()),"user name can't be empty");
             checkState(isNotBlank(registerUserRequest.getPassword()),"user password can't be empty");
             checkState(isNotBlank(registerUserRequest.getRepeatPassword()),"user re-password can't be empty");
             checkState(registerUserRequest.getRepeatPassword().equals(registerUserRequest.getPassword()),"user re-password not same");
-
         } catch (Exception e){
             return Result.failed(e);
         }
@@ -141,10 +140,45 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
         }
     }
 
+    public Result me(HttpHeaders httpHeaders){
+        String authorizationHeader = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
+        if(authorizationHeader == null) {
+            return Result.failed("no Authorization header");
+        }
+
+        try {
+            // Extract the token from the HTTP Authorization header
+            String token = authorizationHeader.substring("Bearer".length()).trim();
+
+            secret = environment.getProperty("spring.application.secret");
+
+            Claims claims = JWT.parseJWT(token,secret);
+            logger.info("valid token : " + token);
+            Date now = new Date();
+            if(now.after(claims.getExpiration())) {
+                throw new Exception("token expired");
+            }
+            String userId = claims.getSubject();
+            Long id = Long.parseLong(userId);
+            Optional userOptional = userDAO.findById(id);
+            if(!userOptional.isPresent()){
+                //no such user
+                throw new Exception("token invalid");
+            }
+            return Result.success(userOptional.get());
+
+        } catch (Exception e) {
+            return Result.failed(e);
+        }
+    }
+
     public Result echoWithJWTToken(HttpHeaders httpHeaders) {
 
         String authorizationHeader = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
-        logger.info(authorizationHeader);
+        if(authorizationHeader == null) {
+            return Result.failed("no Authorization header");
+        }
+
         try {
             // Extract the token from the HTTP Authorization header
             String token = authorizationHeader.substring("Bearer".length()).trim();
