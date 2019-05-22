@@ -2,7 +2,6 @@ package com.alipay.sofa.service.impl;
 
 import com.alipay.sofa.common.dal.dao.UserDAO;
 import com.alipay.sofa.common.dal.tables.User;
-import com.alipay.sofa.common.util.annotation.JWTAuth;
 import com.alipay.sofa.facade.UserAuthorizationService;
 import com.alipay.sofa.runtime.api.annotation.SofaService;
 import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
@@ -15,9 +14,8 @@ import com.alipay.sofa.common.util.AES;
 import com.alipay.sofa.common.util.Result;
 
 import javax.annotation.Resource;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
 
 import com.alipay.sofa.common.util.JWT;
 import com.alipay.sofa.facade.model.request.RegisterUserRequest;
@@ -37,7 +35,6 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @Service
 @SofaService(bindings= {@SofaServiceBinding(bindingType = "bolt"),@SofaServiceBinding(bindingType = "rest")})
 public class UserAuthorizationServiceImpl implements UserAuthorizationService {
-
 
     private static final Logger logger = LoggerFactory.getLogger(UserAuthorizationServiceImpl.class);
 

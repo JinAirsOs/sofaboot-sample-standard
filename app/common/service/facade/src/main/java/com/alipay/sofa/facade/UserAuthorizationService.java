@@ -18,7 +18,6 @@ import java.lang.annotation.Inherited;
  * @date 2019-5-17 11:01:23
  */
 @Path("api/v1")
-@Consumes("application/json;charset=UTF-8")
 @Produces("application/json;charset=UTF-8")
 public interface UserAuthorizationService {
 
