@@ -31,6 +31,7 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 
 @Service
@@ -49,6 +50,13 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
     private Environment environment;
 
     public Result login(LoginRequest loginRequest){
+        try{
+            checkNotNull(loginRequest);
+            checkState(isNotBlank(loginRequest.getName()),"user name can't be empty");
+            checkState(isNotBlank(loginRequest.getPassword()),"user password can't be empty");
+        } catch (Exception e){
+            return Result.failed(e);
+        }
         Map<String,String> data = new HashMap<>();
         String name = loginRequest.getName();
         String password = loginRequest.getPassword();
@@ -75,6 +83,16 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
     }
 
     public Result register(RegisterUserRequest registerUserRequest){
+        try{
+            checkNotNull(registerUserRequest);
+            checkState(isNotBlank(registerUserRequest.getName()),"user name can't be empty");
+            checkState(isNotBlank(registerUserRequest.getPassword()),"user password can't be empty");
+            checkState(isNotBlank(registerUserRequest.getRepeatPassword()),"user re-password can't be empty");
+            checkState(registerUserRequest.getRepeatPassword().equals(registerUserRequest.getPassword()),"user re-password not same");
+
+        } catch (Exception e){
+            return Result.failed(e);
+        }
         Map<String,String> data = new HashMap<>();
         String name = registerUserRequest.getName();
         String password = registerUserRequest.getPassword();
@@ -136,11 +154,10 @@ public class UserAuthorizationServiceImpl implements UserAuthorizationService {
             Claims claims = JWT.parseJWT(token,secret);
             logger.info("valid token : " + token);
             Date now = new Date();
-            /*if(claims.getExpiration().after(now)) {
+            if(now.after(claims.getExpiration())) {
                 throw new Exception("token expired");
-            }*/
+            }
             String userId = claims.getSubject();
-            logger.info(userId);
             Long id = Long.parseLong(userId);
             Optional userOptional = userDAO.findById(id);
             if(!userOptional.isPresent()){

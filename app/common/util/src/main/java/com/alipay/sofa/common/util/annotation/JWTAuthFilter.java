@@ -27,6 +27,7 @@ import java.util.Optional;
 public class JWTAuthFilter implements ContainerRequestFilter {
 
     private Logger logger = LoggerFactory.getLogger(JWTAuthFilter.class);
+
     @Resource
     private Environment environment;
 
@@ -49,7 +50,7 @@ public class JWTAuthFilter implements ContainerRequestFilter {
             Claims claims = JWT.parseJWT(token,secret);
             logger.info("valid token : " + token);
             Date now = new Date();
-            if(claims.getExpiration().after(now)) {
+            if(now.after(claims.getExpiration())) {
                 throw new Exception("token expired");
             }
             String userId = claims.getId();

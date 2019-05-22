@@ -31,17 +31,11 @@ public class JWT {
 
         //创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
         Map<String, Object> claims = new HashMap<String, Object>();
-        claims.put("id", user.getId());
-        claims.put("name", user.getName());
 
+        claims.put("name", user.getName());
 
         //生成签名的时候使用的秘钥secret,这个方法本地封装了的
         String key = secret;
-
-        //生成签发人
-        String subject = user.getName();
-
-
 
         //下面就是在为payload添加各种标准声明和私有声明了
         //这里其实就是new一个JwtBuilder，设置jwt的body

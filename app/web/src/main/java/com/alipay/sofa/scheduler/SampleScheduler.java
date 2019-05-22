@@ -28,6 +28,5 @@ public class SampleScheduler {
         //注意 studentRpcService已经被zookeeper注册成为bean,xml如果不注册成为bean,
         // 可以用上面的方式引用
         LOGGER.info(studentRpcService.ping());
-        LOGGER.info(studentRpcService.getStudentNameById(1));
     }
 }
