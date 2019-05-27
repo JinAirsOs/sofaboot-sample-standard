@@ -6,10 +6,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
-    <!--<bean id="studentRpcService" class="com.alipay.sofa.service.impl.StudentRpcServiceImpl">
-    </bean>
+
+    <bean id="userAuthFilter" class="com.alipay.sofa.service.impl.UserAuthFilter"></bean>
+
+    <bean id="studentRpcService" class="com.alipay.sofa.service.impl.StudentRpcServiceImpl"></bean>
     <sofa:service ref="studentRpcService" interface="com.alipay.sofa.facade.StudentRpcService">
-        <sofa:binding.bolt/>
-        <sofa:binding.rest/>
-    </sofa:service>-->
+        <sofa:binding.bolt>
+            <sofa:global-attrs filter="userAuthFilter"/>
+        </sofa:binding.bolt>
+
+        <sofa:binding.rest>
+        </sofa:binding.rest>
+    </sofa:service>
 </beans>
