@@ -9,6 +9,10 @@ VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
+# sofa service rest api port
+EXPOSE 8341
+# sofa service rpc direct port
+EXPOSE 12200
 
 # The application's jar file
 ARG JAR_FILE=target/boot/sofaboot-start-web-1.0.0-SNAPSHOT-executable.jar

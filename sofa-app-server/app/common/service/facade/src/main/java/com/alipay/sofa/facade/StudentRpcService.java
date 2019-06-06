@@ -12,6 +12,7 @@ import com.alipay.sofa.common.dal.tables.Student;
 /**
  * @author kerry
  * @date 2019-5-21 14:50:07
+ * 没有验证中间件的api
  */
 @Path("api/private/")
 @Consumes("application/json;charset=UTF-8")
