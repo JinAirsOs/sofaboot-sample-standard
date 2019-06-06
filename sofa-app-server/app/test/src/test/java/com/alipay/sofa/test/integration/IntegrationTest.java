@@ -17,15 +17,12 @@
 package com.alipay.sofa.test.integration;
 
 import com.alipay.sofa.facade.StudentRpcService;
-import com.alipay.sofa.facade.UserAuthorizationService;
-import com.alipay.sofa.facade.model.request.LoginRequest;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.test.base.AbstractTestBase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.alipay.sofa.common.util.Result;
 
 /**
  * 集成测试
@@ -37,7 +34,7 @@ public class IntegrationTest extends AbstractTestBase {
     @Test
     public void testRequestJson() {
         ResponseEntity<String> responseEntity = testRestTemplate.getForEntity(urlHttpPrefix
-                                                                              + "/json",
+                                                                              + "api/student/json",
             String.class);
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         String responseBody = responseEntity.getBody();
@@ -56,36 +53,5 @@ public class IntegrationTest extends AbstractTestBase {
         StudentRpcService studentRpcService = consumerConfig.refer();
 
         Assert.assertTrue("pong".equals(studentRpcService.ping()));
-    }
-
-    @Test
-    public void testUserRpcBoltServiceLogin() {
-        ConsumerConfig<UserAuthorizationService> consumerConfig = new ConsumerConfig<UserAuthorizationService>()
-                .setInterfaceId(UserAuthorizationService.class.getName()) // 指定接口
-                .setProtocol("bolt") // 指定协议
-                .setDirectUrl("bolt://127.0.0.1:12200") // 指定直连地址
-                .setConnectTimeout(10 * 1000);
-
-        UserAuthorizationService userAuthorizationService = consumerConfig.refer();
-
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setName("notfound");
-        loginRequest.setPassword("test");
-        Result result = userAuthorizationService.login(loginRequest);
-        Assert.assertTrue(!result.isSuccess());
-        Assert.assertNotNull(result.getErrorContext());
-    }
-
-    @Test
-    public void testUserRpcRestServiceLogin() {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setName("notfound");
-        loginRequest.setPassword("test");
-        ResponseEntity<Result> responseEntity = testRestTemplate.postForEntity(restHttpPrefix+"/api/v1/login",loginRequest,Result.class);
-        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Result result = responseEntity.getBody();
-
-        Assert.assertTrue(!result.isSuccess());
-        Assert.assertNotNull(result.getErrorContext());
     }
 }

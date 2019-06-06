@@ -41,6 +41,7 @@ import org.springframework.scheduling.annotation.Scheduled;
  * @since 2.5.8
  */
 @RestController
+@RequestMapping("/api/student")
 public class SampleRestController {
 
     private static int cnt = 0;
@@ -93,43 +94,5 @@ public class SampleRestController {
         return res;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public Map<String, Object> login(HttpServletRequest request){
-        Map<String, Object> map = new HashMap<>();
-        String name = request.getParameter("name");
-        if(name == null){
-            map.put("login", false);
-            map.put("requestId",request.getSession().getId());
-            return map;
-        }
-        Student student = new Student();
-        student.setName(name);
-        Optional<Student> op = studentDAO.findOne(Example.of(student));
-        if (op.isPresent()) {
-            request.getSession().setAttribute("userId", op.get().getId());
-            map.put("requestId",request.getSession().getId());
-            map.put("login", true);
-        } else {
-            map.put("login", false);
-            map.put("requestId",request.getSession().getId());
-        }
-        return map;
-    }
 
-    @RequestMapping("getUserInfo")
-    public Map<String, Object> getUserId(HttpServletRequest request){
-        Map<String, Object> map = new HashMap<>();
-        Object userId = request.getSession().getAttribute("userId");
-        if (userId == null){
-            map.put("error","not login");
-            return map;
-        }
-        Optional<Student> optionalStudent = studentDAO.findById((int)userId);
-        if(optionalStudent.isPresent()){
-            map.put("userInfo", optionalStudent.get());
-        } else {
-            map.put("error","not login");
-        }
-        return map;
-    }
 }
