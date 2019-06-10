@@ -1,6 +1,6 @@
 package com.alipay.sofa.security;
 
-import com.alipay.sofa.model.User;
+import com.alipay.sofa.common.dal.tables.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

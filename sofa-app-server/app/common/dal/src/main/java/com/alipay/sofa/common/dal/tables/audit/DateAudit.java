@@ -1,4 +1,4 @@
-package com.alipay.sofa.model.audit;
+package com.alipay.sofa.common.dal.tables.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;

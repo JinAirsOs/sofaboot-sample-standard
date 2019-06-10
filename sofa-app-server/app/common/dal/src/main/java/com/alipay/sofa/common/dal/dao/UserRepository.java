@@ -1,6 +1,6 @@
-package com.alipay.sofa.repository;
+package com.alipay.sofa.common.dal.dao;
 
-import com.alipay.sofa.model.User;
+import com.alipay.sofa.common.dal.tables.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,6 @@ import java.util.Optional;
 /**
  * Created by rajeevkumarsingh on 02/08/17.
  */
-@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 

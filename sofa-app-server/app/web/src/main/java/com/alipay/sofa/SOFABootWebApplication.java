@@ -16,23 +16,12 @@
  */
 package com.alipay.sofa;
 
-import com.alipay.sofa.common.dal.tables.Student;
-import com.alipay.sofa.config.AppConfig;
-import com.alipay.sofa.facade.StudentRpcService;
-import com.alipay.sofa.rpc.common.RpcConstants;
-import com.alipay.sofa.rpc.config.ConsumerConfig;
-import com.alipay.sofa.rpc.config.RegistryConfig;
-import com.alipay.sofa.runtime.api.annotation.SofaReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.context.annotation.ImportResource;
 
-import java.util.Map;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.annotation.PostConstruct;

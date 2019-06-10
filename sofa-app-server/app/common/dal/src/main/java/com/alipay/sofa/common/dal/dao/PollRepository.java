@@ -1,6 +1,6 @@
-package com.alipay.sofa.repository;
+package com.alipay.sofa.common.dal.dao;
 
-import com.alipay.sofa.model.Poll;
+import com.alipay.sofa.common.dal.tables.Poll;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,7 +13,6 @@ import java.util.Optional;
 /**
  * Created by rajeevkumarsingh on 20/11/17.
  */
-@Repository
 public interface PollRepository extends JpaRepository<Poll, Long> {
 
     Optional<Poll> findById(Long pollId);

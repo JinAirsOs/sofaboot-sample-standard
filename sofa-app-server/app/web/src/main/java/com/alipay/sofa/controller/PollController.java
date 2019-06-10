@@ -1,10 +1,11 @@
 package com.alipay.sofa.controller;
 
-import com.alipay.sofa.model.*;
+import com.alipay.sofa.common.dal.tables.Poll;
 import com.alipay.sofa.payload.*;
-import com.alipay.sofa.repository.PollRepository;
-import com.alipay.sofa.repository.UserRepository;
-import com.alipay.sofa.repository.VoteRepository;
+import com.alipay.sofa.common.dal.dao.PollRepository;
+import com.alipay.sofa.common.dal.dao.VoteRepository;
+import com.alipay.sofa.common.dal.dao.UserRepository;
+
 import com.alipay.sofa.security.CurrentUser;
 import com.alipay.sofa.security.UserPrincipal;
 import com.alipay.sofa.service.PollService;

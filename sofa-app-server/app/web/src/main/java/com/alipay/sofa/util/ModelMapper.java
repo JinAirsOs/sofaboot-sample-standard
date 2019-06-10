@@ -1,7 +1,7 @@
 package com.alipay.sofa.util;
 
-import com.alipay.sofa.model.Poll;
-import com.alipay.sofa.model.User;
+import com.alipay.sofa.common.dal.tables.Poll;
+import com.alipay.sofa.common.dal.tables.User;
 import com.alipay.sofa.payload.ChoiceResponse;
 import com.alipay.sofa.payload.PollResponse;
 import com.alipay.sofa.payload.UserSummary;

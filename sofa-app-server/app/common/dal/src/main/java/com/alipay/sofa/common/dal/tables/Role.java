@@ -1,4 +1,4 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;

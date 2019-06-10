@@ -1,6 +1,5 @@
 package com.alipay.sofa.scheduler;
 
-import com.alipay.sofa.config.AppConfig;
 import com.alipay.sofa.facade.StudentRpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +20,6 @@ public class SampleScheduler {
     @Resource
     private StudentRpcService studentRpcService;
 
-    @Resource
-    private AppConfig appConfig;
     @Scheduled(fixedRate = TWENTY_SECONDS)
     public void scheduledTask() {
         //注意 studentRpcService已经被zookeeper注册成为bean,xml如果不注册成为bean,

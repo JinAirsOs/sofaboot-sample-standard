@@ -23,18 +23,10 @@ import com.alipay.sofa.facade.NewsReadService;
 import com.alipay.sofa.facade.NewsWriteService;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.sql.DataSource;
-import java.lang.management.OperatingSystemMXBean;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.*;
-import java.text.SimpleDateFormat;
-import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * @author qilong.zql

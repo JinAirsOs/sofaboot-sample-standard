@@ -1,8 +1,8 @@
 package com.alipay.sofa.security;
 
 import com.alipay.sofa.exception.ResourceNotFoundException;
-import com.alipay.sofa.model.User;
-import com.alipay.sofa.repository.UserRepository;
+import com.alipay.sofa.common.dal.tables.User;
+import com.alipay.sofa.common.dal.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

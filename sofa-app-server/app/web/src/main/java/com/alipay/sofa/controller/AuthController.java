@@ -1,15 +1,16 @@
 package com.alipay.sofa.controller;
 
 import com.alipay.sofa.exception.AppException;
-import com.alipay.sofa.model.Role;
-import com.alipay.sofa.model.RoleName;
-import com.alipay.sofa.model.User;
+import com.alipay.sofa.common.dal.tables.Role;
+import com.alipay.sofa.common.dal.tables.RoleName;
+import com.alipay.sofa.common.dal.tables.User;
+
 import com.alipay.sofa.payload.ApiResponse;
 import com.alipay.sofa.payload.JwtAuthenticationResponse;
 import com.alipay.sofa.payload.LoginRequest;
 import com.alipay.sofa.payload.SignUpRequest;
-import com.alipay.sofa.repository.RoleRepository;
-import com.alipay.sofa.repository.UserRepository;
+import com.alipay.sofa.common.dal.dao.RoleRepository;
+import com.alipay.sofa.common.dal.dao.UserRepository;
 import com.alipay.sofa.security.JwtTokenProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
-import com.alipay.sofa.model.audit.DateAudit;
+import com.alipay.sofa.common.dal.tables.audit.DateAudit;
 import javax.persistence.*;
 
 @Entity

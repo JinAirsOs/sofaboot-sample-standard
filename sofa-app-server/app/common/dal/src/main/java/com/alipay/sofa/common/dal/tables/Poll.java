@@ -1,6 +1,6 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
-import com.alipay.sofa.model.audit.UserDateAudit;
+import com.alipay.sofa.common.dal.tables.audit.UserDateAudit;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

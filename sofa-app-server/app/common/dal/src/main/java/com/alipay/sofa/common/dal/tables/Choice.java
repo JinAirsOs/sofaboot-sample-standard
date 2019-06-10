@@ -1,4 +1,4 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

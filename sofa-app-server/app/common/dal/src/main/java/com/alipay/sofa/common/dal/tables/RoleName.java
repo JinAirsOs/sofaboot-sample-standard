@@ -1,4 +1,4 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
 /**
  * Created by rajeevkumarsingh on 07/12/17.

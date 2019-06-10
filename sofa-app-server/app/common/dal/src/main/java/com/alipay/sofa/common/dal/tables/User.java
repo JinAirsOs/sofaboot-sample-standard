@@ -1,6 +1,6 @@
-package com.alipay.sofa.model;
+package com.alipay.sofa.common.dal.tables;
 
-import com.alipay.sofa.model.audit.DateAudit;
+
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
+import com.alipay.sofa.common.dal.tables.audit.DateAudit;
 
 /**
  * Created by rajeevkumarsingh on 01/08/17.
