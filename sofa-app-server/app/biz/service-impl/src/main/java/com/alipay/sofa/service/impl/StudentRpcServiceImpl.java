@@ -3,6 +3,7 @@ package com.alipay.sofa.service.impl;
 import com.alipay.sofa.common.dal.dao.StudentDAO;
 import com.alipay.sofa.common.dal.tables.Student;
 import com.alipay.sofa.facade.StudentRpcService;
+import com.alipay.sofa.common.util.Result;
 import com.alipay.sofa.runtime.api.annotation.SofaService;
 import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import org.slf4j.Logger;
@@ -41,15 +42,15 @@ public class StudentRpcServiceImpl implements StudentRpcService {
         }
     }
 
-    public Map<String,Student> getStudentInfoById(int id) {
+    public Result getStudentInfoById(int id) {
         logger.info("getStudentInfoById(int id) is called");
         Optional<Student> studentOption = studentDAO.findById(id);
         Map<String,Student> studentInfo = new HashMap<>();
         if(studentOption.isPresent()){
             studentInfo.put("student",studentOption.get());
-            return studentInfo;
+            return Result.success(studentOption.get());
         } else {
-            return studentInfo;
+            return Result.failed("not found");
         }
     }
 }

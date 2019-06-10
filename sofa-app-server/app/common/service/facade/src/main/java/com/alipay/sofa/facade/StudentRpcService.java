@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import java.util.Map;
-import com.alipay.sofa.common.dal.tables.Student;
+import com.alipay.sofa.common.util.Result;
 
 /**
  * @author kerry
@@ -28,5 +28,5 @@ public interface StudentRpcService {
 
     @GET
     @Path("getStudentInfo")
-    Map<String,Student> getStudentInfoById(@QueryParam("id") int id);
+    Result getStudentInfoById(@QueryParam("id") int id);
 }
