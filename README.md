@@ -18,6 +18,7 @@ sofaboot-sample-standard
 - `localhost:8080/update`: 更新student
 - `localhost:8080/add`: 新增student
 - `localhost:8080/queryAll`: 查询所有student
+
 ##安装步骤
 - java8
 - docker-compose up
